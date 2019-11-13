@@ -1,9 +1,18 @@
 import React from "react"
-import { Link } from "gatsby"
-
+import { Link, graphql, useStaticQuery } from "gatsby"
+import { useJsonForm } from "gatsby-tinacms-json"
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
+
+const fields = [
+  {
+    label: "Title",
+    name: "rawJson.title",
+    description: "title of the page",
+    component: "text",
+  },
+]
 
 const IndexPage = () => (
   <Layout>
