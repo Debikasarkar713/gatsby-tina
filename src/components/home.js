@@ -2,7 +2,6 @@ import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import { useJsonForm } from "gatsby-tinacms-json"
 import Layout from "./layout"
-import Image from "./image"
 import SEO from "./seo"
 
 const fields = [
@@ -12,6 +11,12 @@ const fields = [
     description: "title of the page",
     component: "text",
   },
+  {
+    label: "Description",
+    name: "rawJson.description",
+    description: "description of the page",
+    component: "textarea",
+  },
 ]
 
 const HomePage = () => {
@@ -19,6 +24,7 @@ const HomePage = () => {
     query HomeQuery {
       dataJson(fileRelativePath: { eq: "/data/home.json" }) {
         title
+        description
 
         fileRelativePath
         rawJson
@@ -35,12 +41,7 @@ const HomePage = () => {
     <Layout>
       <SEO title="Home" />
       <h1>{home.title}</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-        <Image />
-      </div>
-      <Link to="/page-2/">Go to page 2</Link>
+      <p>{home.description}</p>
     </Layout>
   )
 }
